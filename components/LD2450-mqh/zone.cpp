@@ -3,6 +3,7 @@
 namespace esphome::ld2450
 {
     const char *TAG = "Zone";
+    int allTargetCount=0;
 
     bool is_convex(std::vector<Point> polygon)
     {
@@ -62,6 +63,8 @@ namespace esphome::ld2450
         {
             target_count += contains_target(target);
         }
+        allTargetCount=contains_target+allTargetCount;
+        target_count=allTargetCount;
 
 #ifdef USE_BINARY_SENSOR
         if (occupancy_binary_sensor_ != nullptr && (occupancy_binary_sensor_->state != (target_count > 0) || !occupancy_binary_sensor_->has_state()))
