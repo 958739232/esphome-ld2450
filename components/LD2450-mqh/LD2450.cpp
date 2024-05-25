@@ -3,7 +3,7 @@
 
 namespace esphome::ld2450
 {
-
+    int allTargetCount=0;
     static const char *TAG = "LD2450";
 
     void LD2450::setup()
@@ -315,6 +315,8 @@ namespace esphome::ld2450
             target_count += target->is_present();
         }
         is_occupied_ = target_count > 0;
+         allTargetCount=target_count+allTargetCount;
+        target_count=allTargetCount;
 
 #ifdef USE_BINARY_SENSOR
         if (occupancy_binary_sensor_ != nullptr && occupancy_binary_sensor_->state != is_occupied_)
